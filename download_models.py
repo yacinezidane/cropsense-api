@@ -13,8 +13,8 @@ from pathlib import Path
 MODELS_DIR     = Path(os.getenv("MODELS_DIR", "models"))
 HF_REPO_ID     = os.getenv("HF_REPO_ID", "")          # e.g. "YacineBou/cropsense-models"
 HF_TOKEN       = os.getenv("HF_TOKEN", None)           # needed if repo is private
-MODEL_FILENAME = os.getenv("MODEL_FILENAME", "plant_disease_rtx3080_optimized.keras")
-CLASSES_FILE   = os.getenv("CLASSES_FILENAME", "label_classes.pkl")
+MODEL_FILENAME = os.getenv("MODEL_FILENAME", "models/plant_disease_rtx3080_optimized.keras")
+CLASSES_FILE   = os.getenv("CLASSES_FILENAME", "models/label_classes.pkl")
 
 # ─── Validate ─────────────────────────────────────────────────────────────────
 if not HF_REPO_ID:
