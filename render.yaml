@@ -1,0 +1,57 @@
+services:
+  - type: web
+    name: cropsense-api
+    env: python
+    region: oregon            # أقرب region لشمال أفريقيا هي frankfurt أو oregon
+    plan: starter             # استخدم starter ($7/شهر) — الـ free plan RAM محدودة لـ TensorFlow
+    pythonVersion: "3.12"
+
+    # ── Build ──────────────────────────────────────────────────────────────────
+    buildCommand: pip install -r requirements.txt && pip install -e . && python download_models.py
+
+    # ── Start ─────────────────────────────────────────────────────────────────
+    startCommand: gunicorn -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 -b 0.0.0.0:$PORT "api.app:create_app()"
+
+    # ── Health check ──────────────────────────────────────────────────────────
+    healthCheckPath: /health
+
+    # ── Environment variables ─────────────────────────────────────────────────
+    envVars:
+      # مجلد الموديلات — ثابت على Render
+      - key: MODELS_DIR
+        value: /opt/render/project/src/models
+
+      # MongoDB Atlas connection string — تحط قيمتها في Dashboard
+      - key: MONGO_URI
+        sync: false   # لا تحفظه في Git — ادخله يدوياً في Render Dashboard
+
+      - key: MONGO_DB_NAME
+        value: plant_disease_db
+
+      # Hugging Face — لتنزيل الموديل أثناء البناء
+      - key: HF_REPO_ID
+        sync: false   # مثال: YacineUsername/cropsense-models
+
+      - key: HF_TOKEN
+        sync: false   # مطلوب فقط إذا الـ repo خاص (private)
+
+      # أسماء ملفات الموديل
+      - key: MODEL_FILENAME
+        value: plant_disease_rtx3080_optimized.keras
+
+      - key: CLASSES_FILENAME
+        value: label_classes.pkl
+
+      # JWT
+      - key: JWT_SECRET
+        generateValue: true   # Render يولّد قيمة عشوائية تلقائياً
+
+      - key: JWT_EXPIRY_HOURS
+        value: "24"
+
+      # Flask
+      - key: DEBUG
+        value: "false"
+
+      - key: HOST
+        value: "0.0.0.0"

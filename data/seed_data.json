@@ -1,0 +1,659 @@
+{
+  "plants": [
+    {
+      "canonical_name": "pepper_bell",
+      "scientific_name": "Capsicum annuum",
+      "names": {
+        "en": ["Bell Pepper", "Sweet Pepper", "Capsicum"],
+        "ar": ["فلفل حلو", "فلفل رومي"],
+        "fr": ["Poivron", "Piment doux"]
+      },
+      "description": {
+        "en": "Bell peppers are sweet, mild-flavored members of the nightshade family. They come in various colors including green, red, yellow, and orange. Rich in vitamins A and C, they are widely used in salads, stir-fries, and stuffed dishes.",
+        "ar": "الفلفل الحلو من عائلة الباذنجانيات، يتميز بمذاقه الحلو المعتدل. يأتي بألوان متعددة منها الأخضر والأحمر والأصفر والبرتقالي. غني بفيتامينات A و C.",
+        "fr": "Les poivrons sont des membres doux de la famille des solanacées. Ils existent en différentes couleurs: vert, rouge, jaune et orange. Riches en vitamines A et C."
+      },
+      "care_instructions": {
+        "en": "Plant in full sun with well-draining soil. Water regularly, keeping soil consistently moist but not waterlogged. Ideal temperature range is 70-85°F (21-29°C). Feed with balanced fertilizer every 2-3 weeks during growing season. Stake plants if needed to support heavy fruit.",
+        "ar": "ازرع في مكان مشمس مع تربة جيدة التصريف. اسقِ بانتظام مع الحفاظ على رطوبة التربة. درجة الحرارة المثالية 21-29 درجة مئوية.",
+        "fr": "Plantez en plein soleil dans un sol bien drainé. Arrosez régulièrement en maintenant le sol humide. Température idéale: 21-29°C."
+      }
+    },
+    {
+      "canonical_name": "potato",
+      "scientific_name": "Solanum tuberosum",
+      "names": {
+        "en": ["Potato", "Spud", "Tater"],
+        "ar": ["بطاطس", "بطاطا"],
+        "fr": ["Pomme de terre", "Patate"]
+      },
+      "description": {
+        "en": "Potatoes are starchy tuberous crops from the nightshade family. They are one of the world's most important food crops, providing carbohydrates, vitamins, and minerals. Potatoes can be prepared in countless ways and are a staple food in many cultures.",
+        "ar": "البطاطس من المحاصيل الدرنية النشوية من عائلة الباذنجانيات. تعد من أهم المحاصيل الغذائية في العالم، توفر الكربوهيدرات والفيتامينات والمعادن.",
+        "fr": "Les pommes de terre sont des cultures tubéreuses féculentes de la famille des solanacées. Elles constituent l'une des cultures alimentaires les plus importantes au monde."
+      },
+      "care_instructions": {
+        "en": "Plant seed potatoes in well-draining, slightly acidic soil (pH 5.0-6.0). Hill soil around plants as they grow to prevent greening. Water consistently, about 1-2 inches per week. Harvest after foliage dies back. Store in cool, dark, well-ventilated area.",
+        "ar": "ازرع البطاطس في تربة جيدة التصريف حمضية قليلاً. اسقِ بانتظام حوالي 2-5 سم أسبوعياً. احصد بعد ذبول الأوراق.",
+        "fr": "Plantez dans un sol bien drainé, légèrement acide. Arrosez régulièrement, environ 2-5 cm par semaine. Récoltez après le flétrissement du feuillage."
+      }
+    },
+    {
+      "canonical_name": "tomato",
+      "scientific_name": "Solanum lycopersicum",
+      "names": {
+        "en": ["Tomato"],
+        "ar": ["طماطم", "بندورة"],
+        "fr": ["Tomate"]
+      },
+      "description": {
+        "en": "Tomatoes are red, edible fruits from the nightshade family, native to western South America. Though botanically a fruit, they are commonly used as a vegetable in cooking. Rich in lycopene, vitamins C and K, and potassium.",
+        "ar": "الطماطم ثمار حمراء صالحة للأكل من عائلة الباذنجانيات، موطنها الأصلي غرب أمريكا الجنوبية. غنية بالليكوبين وفيتامينات C و K والبوتاسيوم.",
+        "fr": "Les tomates sont des fruits rouges comestibles de la famille des solanacées, originaires de l'ouest de l'Amérique du Sud. Riches en lycopène, vitamines C et K, et potassium."
+      },
+      "care_instructions": {
+        "en": "Plant in full sun with rich, well-draining soil. Water deeply and consistently, about 1-2 inches per week. Stake or cage plants for support. Prune suckers for indeterminate varieties. Feed with tomato-specific fertilizer. Maintain good air circulation to prevent disease.",
+        "ar": "ازرع في مكان مشمس مع تربة غنية جيدة التصريف. اسقِ بعمق وانتظام. ادعم النباتات بالأوتاد. حافظ على تهوية جيدة لمنع الأمراض.",
+        "fr": "Plantez en plein soleil dans un sol riche et bien drainé. Arrosez profondément et régulièrement. Tuteurez les plants. Maintenez une bonne circulation d'air."
+      }
+    }
+  ],
+  "diseases": [
+    {
+      "canonical_name": "bacterial_spot_pepper",
+      "model_class": "Pepper__bell___Bacterial_spot",
+      "plant_canonical": "pepper_bell",
+      "names": {
+        "en": ["Bacterial Spot", "Bacterial Leaf Spot"],
+        "ar": ["التبقع البكتيري", "البقع البكتيرية"],
+        "fr": ["Tache bactérienne", "Maladie des taches bactériennes"]
+      },
+      "description": {
+        "en": "Bacterial spot is a serious disease affecting peppers caused by Xanthomonas bacteria. It thrives in warm, humid conditions and can spread rapidly through rain splash, contaminated tools, and infected seeds. The disease affects leaves, stems, and fruits, causing significant yield losses if not managed properly.",
+        "ar": "التبقع البكتيري مرض خطير يصيب الفلفل تسببه بكتيريا زانثوموناس. ينتشر في الظروف الدافئة الرطبة عبر رذاذ المطر والأدوات الملوثة والبذور المصابة.",
+        "fr": "La tache bactérienne est une maladie grave du poivron causée par la bactérie Xanthomonas. Elle se développe dans des conditions chaudes et humides."
+      },
+      "symptoms": {
+        "en": [
+          "Small, water-soaked spots on leaves that turn brown and papery",
+          "Raised, scab-like spots on fruits",
+          "Yellowing and dropping of lower leaves",
+          "Dark, greasy-looking lesions on stems",
+          "Spots may have yellow halos around them",
+          "Severely infected leaves become distorted and fall off"
+        ],
+        "ar": [
+          "بقع صغيرة مبللة على الأوراق تتحول إلى اللون البني",
+          "بقع بارزة تشبه الجرب على الثمار",
+          "اصفرار وتساقط الأوراق السفلية",
+          "آفات داكنة على السيقان"
+        ],
+        "fr": [
+          "Petites taches imbibées d'eau sur les feuilles devenant brunes",
+          "Taches en relief sur les fruits",
+          "Jaunissement et chute des feuilles inférieures",
+          "Lésions sombres sur les tiges"
+        ]
+      },
+      "cure": {
+        "en": "Remove and destroy infected plant parts immediately. Apply copper-based bactericides (copper hydroxide or copper sulfate) at first sign of disease. Spray every 7-10 days during wet weather. For severe infections, use streptomycin-based sprays where permitted. Ensure good drainage and avoid overhead watering. Consider resistant varieties for future plantings.",
+        "ar": "أزل الأجزاء المصابة فوراً. استخدم مبيدات بكتيرية تحتوي على النحاس. رش كل 7-10 أيام في الطقس الرطب. تجنب الري العلوي.",
+        "fr": "Retirez et détruisez les parties infectées. Appliquez des bactéricides à base de cuivre. Pulvérisez tous les 7-10 jours par temps humide."
+      },
+      "prevention": {
+        "en": "Use certified disease-free seeds and transplants. Practice crop rotation with non-solanaceous crops for 2-3 years. Space plants adequately for good air circulation. Avoid working with wet plants. Disinfect tools between plants. Use drip irrigation instead of overhead watering. Apply preventive copper sprays before disease appears. Remove plant debris at end of season.",
+        "ar": "استخدم بذور خالية من الأمراض. مارس تناوب المحاصيل لمدة 2-3 سنوات. باعد بين النباتات للتهوية الجيدة. تجنب العمل مع النباتات الرطبة.",
+        "fr": "Utilisez des semences certifiées sans maladie. Pratiquez la rotation des cultures pendant 2-3 ans. Espacez les plants pour une bonne circulation d'air."
+      },
+      "user_contributed_names": [
+        {"name": "Pepper Spot Disease", "language": "en", "votes": 5, "added_by": "user1"},
+        {"name": "مرض بقع الفلفل", "language": "ar", "votes": 3, "added_by": "user2"}
+      ]
+    },
+    {
+      "canonical_name": "early_blight_potato",
+      "model_class": "Potato___Early_blight",
+      "plant_canonical": "potato",
+      "names": {
+        "en": ["Early Blight", "Alternaria Leaf Spot"],
+        "ar": ["اللفحة المبكرة", "تبقع الأوراق الألترنارية"],
+        "fr": ["Alternariose", "Brûlure alternarienne"]
+      },
+      "description": {
+        "en": "Early blight is a common fungal disease caused by Alternaria solani. It typically affects older leaves first and can spread to stems and tubers. The disease is more prevalent during warm, humid weather and can cause significant defoliation, reducing tuber size and yield.",
+        "ar": "اللفحة المبكرة مرض فطري شائع يسببه فطر ألترناريا سولاني. يصيب عادة الأوراق القديمة أولاً ويمكن أن ينتشر إلى السيقان والدرنات.",
+        "fr": "L'alternariose est une maladie fongique commune causée par Alternaria solani. Elle affecte généralement les feuilles plus âgées en premier."
+      },
+      "symptoms": {
+        "en": [
+          "Dark brown to black spots with concentric rings (target-like appearance)",
+          "Lesions typically start on lower, older leaves",
+          "Yellow halos may surround the spots",
+          "Leaves may turn yellow and drop prematurely",
+          "Dark, sunken lesions on stems",
+          "Dry, corky, dark lesions on tubers",
+          "Overall plant wilting in severe cases"
+        ],
+        "ar": [
+          "بقع بنية داكنة إلى سوداء مع حلقات متحدة المركز",
+          "تبدأ الآفات عادة على الأوراق السفلية القديمة",
+          "هالات صفراء قد تحيط بالبقع",
+          "اصفرار الأوراق وسقوطها المبكر"
+        ],
+        "fr": [
+          "Taches brun foncé à noires avec des anneaux concentriques",
+          "Les lésions commencent sur les feuilles inférieures",
+          "Des halos jaunes peuvent entourer les taches",
+          "Jaunissement et chute prématurée des feuilles"
+        ]
+      },
+      "cure": {
+        "en": "Apply fungicides containing chlorothalonil, mancozeb, or azoxystrobin at first sign of disease. Spray every 7-14 days depending on weather conditions. Remove and destroy severely infected leaves. Ensure adequate plant nutrition, especially nitrogen and potassium. Improve air circulation by proper spacing. Harvest tubers only when fully mature and skin is set.",
+        "ar": "استخدم مبيدات فطرية تحتوي على كلوروثالونيل أو مانكوزيب. رش كل 7-14 يوم حسب الظروف الجوية. أزل الأوراق المصابة بشدة.",
+        "fr": "Appliquez des fongicides contenant du chlorothalonil ou du mancozèbe. Pulvérisez tous les 7-14 jours. Retirez les feuilles gravement infectées."
+      },
+      "prevention": {
+        "en": "Use certified disease-free seed potatoes. Practice 2-3 year crop rotation with non-solanaceous crops. Plant resistant varieties when available. Maintain adequate plant spacing for air circulation. Avoid overhead irrigation. Remove volunteer potatoes and nightshade weeds. Apply preventive fungicides before disease appears. Destroy crop debris after harvest.",
+        "ar": "استخدم بطاطس بذور خالية من الأمراض. مارس تناوب المحاصيل لمدة 2-3 سنوات. حافظ على مسافات كافية بين النباتات.",
+        "fr": "Utilisez des plants certifiés sans maladie. Pratiquez la rotation des cultures pendant 2-3 ans. Maintenez un espacement adéquat."
+      }
+    },
+    {
+      "canonical_name": "late_blight_potato",
+      "model_class": "Potato___Late_blight",
+      "plant_canonical": "potato",
+      "names": {
+        "en": ["Late Blight", "Potato Blight", "Phytophthora Blight"],
+        "ar": ["اللفحة المتأخرة", "لفحة البطاطس"],
+        "fr": ["Mildiou", "Mildiou de la pomme de terre"]
+      },
+      "description": {
+        "en": "Late blight is one of the most devastating plant diseases, caused by the oomycete Phytophthora infestans. This disease was responsible for the Irish Potato Famine in the 1840s. It spreads rapidly in cool, wet conditions and can destroy entire fields within days if not controlled.",
+        "ar": "اللفحة المتأخرة من أكثر أمراض النباتات تدميراً، يسببها الفطر الكاذب فيتوفثورا إنفستانز. كان هذا المرض مسؤولاً عن مجاعة البطاطس الأيرلندية في أربعينيات القرن التاسع عشر.",
+        "fr": "Le mildiou est l'une des maladies végétales les plus dévastatrices, causée par Phytophthora infestans. Cette maladie était responsable de la famine irlandaise de la pomme de terre."
+      },
+      "symptoms": {
+        "en": [
+          "Water-soaked, pale green to brown lesions on leaf edges and tips",
+          "White, fuzzy mold growth on undersides of leaves in humid conditions",
+          "Rapid browning and death of entire leaves and stems",
+          "Dark brown to purple lesions on stems",
+          "Reddish-brown, firm rot on tubers",
+          "Entire plants can collapse within days",
+          "Distinctive musty odor from infected plants"
+        ],
+        "ar": [
+          "آفات مبللة بلون أخضر شاحب إلى بني على حواف الأوراق",
+          "نمو عفن أبيض على الجوانب السفلية للأوراق",
+          "تحول سريع للون البني وموت الأوراق والسيقان",
+          "تعفن بني محمر على الدرنات"
+        ],
+        "fr": [
+          "Lésions vert pâle à brun sur les bords des feuilles",
+          "Croissance de moisissure blanche sous les feuilles",
+          "Brunissement rapide et mort des feuilles et tiges",
+          "Pourriture brun-rouge sur les tubercules"
+        ]
+      },
+      "cure": {
+        "en": "Act immediately at first sign of disease. Apply fungicides containing metalaxyl, mancozeb, or chlorothalonil. Spray every 5-7 days during active disease. Remove and destroy all infected plant material by burning or deep burial. Do not compost infected material. In severe cases, kill foliage 2-3 weeks before harvest to prevent tuber infection. Store only disease-free tubers.",
+        "ar": "تصرف فوراً عند أول علامة للمرض. استخدم مبيدات فطرية. رش كل 5-7 أيام. أزل ودمر جميع المواد النباتية المصابة.",
+        "fr": "Agissez immédiatement aux premiers signes. Appliquez des fongicides. Pulvérisez tous les 5-7 jours. Retirez et détruisez tout matériel végétal infecté."
+      },
+      "prevention": {
+        "en": "Plant certified disease-free seed potatoes. Choose resistant varieties (those with multiple R genes). Avoid planting in low-lying, poorly drained areas. Provide good air circulation through adequate spacing. Use drip irrigation, avoid wetting foliage. Monitor weather conditions and apply preventive fungicides before infection periods. Destroy all volunteer potatoes and cull piles. Practice 3+ year rotation.",
+        "ar": "ازرع بطاطس بذور خالية من الأمراض. اختر أصنافاً مقاومة. تجنب الزراعة في المناطق المنخفضة سيئة الصرف. وفر تهوية جيدة.",
+        "fr": "Plantez des plants certifiés. Choisissez des variétés résistantes. Évitez les zones mal drainées. Assurez une bonne circulation d'air."
+      }
+    },
+    {
+      "canonical_name": "bacterial_spot_tomato",
+      "model_class": "Tomato_Bacterial_spot",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Bacterial Spot", "Bacterial Leaf Spot"],
+        "ar": ["التبقع البكتيري", "البقع البكتيرية للطماطم"],
+        "fr": ["Tache bactérienne", "Maladie des taches bactériennes de la tomate"]
+      },
+      "description": {
+        "en": "Bacterial spot in tomatoes is caused by several Xanthomonas species. It's one of the most destructive diseases of tomatoes in warm, humid climates. The bacteria can survive on seed and plant debris, spreading through rain splash, irrigation water, and contaminated equipment.",
+        "ar": "التبقع البكتيري في الطماطم يسببه عدة أنواع من بكتيريا زانثوموناس. يعد من أكثر أمراض الطماطم تدميراً في المناخات الدافئة والرطبة.",
+        "fr": "La tache bactérienne de la tomate est causée par plusieurs espèces de Xanthomonas. C'est l'une des maladies les plus destructrices des tomates en climat chaud et humide."
+      },
+      "symptoms": {
+        "en": [
+          "Small, dark, water-soaked spots on leaves",
+          "Spots become raised and scab-like on fruits",
+          "Leaf spots may have yellow halos",
+          "Severely infected leaves turn yellow and drop",
+          "Raised, brown, scabby lesions on green fruit",
+          "Fruit spots may become sunken as fruit ripens",
+          "Stem cankers in severe infections"
+        ],
+        "ar": [
+          "بقع صغيرة داكنة مبللة على الأوراق",
+          "بقع بارزة تشبه الجرب على الثمار",
+          "هالات صفراء حول البقع",
+          "اصفرار وتساقط الأوراق المصابة بشدة"
+        ],
+        "fr": [
+          "Petites taches sombres imbibées d'eau sur les feuilles",
+          "Taches en relief sur les fruits",
+          "Halos jaunes autour des taches",
+          "Jaunissement et chute des feuilles"
+        ]
+      },
+      "cure": {
+        "en": "Apply copper-based bactericides (copper hydroxide, copper sulfate) at first symptoms. Spray every 7-10 days, more frequently during wet weather. For resistant strains, use copper combined with mancozeb. Remove severely infected plants to prevent spread. Avoid working with wet plants. Ensure good air circulation.",
+        "ar": "استخدم مبيدات بكتيرية تحتوي على النحاس عند أول الأعراض. رش كل 7-10 أيام. أزل النباتات المصابة بشدة.",
+        "fr": "Appliquez des bactéricides à base de cuivre dès les premiers symptômes. Pulvérisez tous les 7-10 jours. Retirez les plants gravement infectés."
+      },
+      "prevention": {
+        "en": "Use certified disease-free seed and transplants. Hot water treat seeds (122°F/50°C for 25 minutes). Practice 2-3 year crop rotation. Space plants for adequate air circulation. Use drip irrigation. Avoid working with wet plants. Sanitize tools and equipment. Remove plant debris at season end. Choose resistant varieties when available.",
+        "ar": "استخدم بذور وشتلات خالية من الأمراض. مارس تناوب المحاصيل لمدة 2-3 سنوات. استخدم الري بالتنقيط. نظف الأدوات.",
+        "fr": "Utilisez des semences certifiées. Pratiquez la rotation des cultures pendant 2-3 ans. Utilisez l'irrigation goutte à goutte. Désinfectez les outils."
+      }
+    },
+    {
+      "canonical_name": "early_blight_tomato",
+      "model_class": "Tomato_Early_blight",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Early Blight", "Alternaria Leaf Blight"],
+        "ar": ["اللفحة المبكرة", "لفحة الألترناريا"],
+        "fr": ["Alternariose", "Brûlure alternarienne de la tomate"]
+      },
+      "description": {
+        "en": "Early blight is caused by the fungus Alternaria solani. It's one of the most common tomato diseases worldwide. The fungus overwinters in infected plant debris and soil, spreading through wind, rain splash, and contaminated tools. Stressed plants are more susceptible.",
+        "ar": "اللفحة المبكرة يسببها فطر ألترناريا سولاني. تعد من أكثر أمراض الطماطم شيوعاً في العالم. يقضي الفطر الشتاء في بقايا النباتات المصابة والتربة.",
+        "fr": "L'alternariose est causée par le champignon Alternaria solani. C'est l'une des maladies les plus courantes de la tomate dans le monde."
+      },
+      "symptoms": {
+        "en": [
+          "Dark brown spots with concentric rings (bull's-eye pattern) on older leaves",
+          "Lesions start on lower leaves and progress upward",
+          "Yellow tissue surrounding the spots",
+          "Affected leaves eventually turn completely yellow and drop",
+          "Dark, sunken lesions at stem end of fruit",
+          "Collar rot at soil line on seedlings",
+          "Significant defoliation in severe cases"
+        ],
+        "ar": [
+          "بقع بنية داكنة مع حلقات متحدة المركز على الأوراق القديمة",
+          "تبدأ الآفات على الأوراق السفلية وتتقدم للأعلى",
+          "اصفرار الأنسجة المحيطة بالبقع",
+          "سقوط الأوراق المصابة"
+        ],
+        "fr": [
+          "Taches brun foncé avec des anneaux concentriques",
+          "Les lésions commencent sur les feuilles inférieures",
+          "Jaunissement des tissus autour des taches",
+          "Chute des feuilles affectées"
+        ]
+      },
+      "cure": {
+        "en": "Apply fungicides containing chlorothalonil, mancozeb, azoxystrobin, or copper at first sign of disease. Spray every 7-14 days. Remove and destroy infected lower leaves. Mulch around plants to prevent soil splash. Improve air circulation by pruning. Maintain plant vigor through proper fertilization.",
+        "ar": "استخدم مبيدات فطرية تحتوي على كلوروثالونيل أو مانكوزيب. رش كل 7-14 يوم. أزل الأوراق السفلية المصابة. استخدم النشارة حول النباتات.",
+        "fr": "Appliquez des fongicides contenant du chlorothalonil ou du mancozèbe. Pulvérisez tous les 7-14 jours. Retirez les feuilles inférieures infectées."
+      },
+      "prevention": {
+        "en": "Use disease-free seed and transplants. Practice 2-3 year crop rotation. Remove all plant debris at end of season. Mulch to prevent soil splash onto leaves. Space plants adequately. Use drip irrigation. Stake or cage plants to improve air circulation. Apply preventive fungicides. Choose resistant varieties.",
+        "ar": "استخدم بذور وشتلات خالية من الأمراض. مارس تناوب المحاصيل. أزل جميع بقايا النباتات. استخدم النشارة.",
+        "fr": "Utilisez des semences et plants sains. Pratiquez la rotation des cultures. Retirez tous les débris végétaux. Utilisez le paillage."
+      }
+    },
+    {
+      "canonical_name": "late_blight_tomato",
+      "model_class": "Tomato_Late_blight",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Late Blight", "Tomato Blight"],
+        "ar": ["اللفحة المتأخرة", "لفحة الطماطم"],
+        "fr": ["Mildiou de la tomate", "Phytophthora de la tomate"]
+      },
+      "description": {
+        "en": "Late blight of tomato is caused by Phytophthora infestans, the same pathogen that causes potato late blight. It's extremely destructive and can spread rapidly in cool, wet weather. The disease can destroy entire plants within days and spreads easily between tomatoes and potatoes.",
+        "ar": "اللفحة المتأخرة للطماطم يسببها فيتوفثورا إنفستانز، نفس العامل الممرض الذي يسبب لفحة البطاطس المتأخرة. مدمرة للغاية وتنتشر بسرعة في الطقس البارد الرطب.",
+        "fr": "Le mildiou de la tomate est causé par Phytophthora infestans. Il est extrêmement destructeur et peut se propager rapidement par temps frais et humide."
+      },
+      "symptoms": {
+        "en": [
+          "Large, irregular, water-soaked, grayish-green spots on leaves",
+          "White, fuzzy sporulation on leaf undersides in humid conditions",
+          "Rapid browning and death of foliage",
+          "Dark brown to black lesions on stems",
+          "Firm, brown, greasy-looking rot on fruit",
+          "Entire plants can die within a week",
+          "Distinctive unpleasant odor"
+        ],
+        "ar": [
+          "بقع كبيرة غير منتظمة مبللة رمادية خضراء على الأوراق",
+          "نمو أبيض على الجوانب السفلية للأوراق",
+          "تحول سريع للون البني وموت الأوراق",
+          "تعفن بني على الثمار"
+        ],
+        "fr": [
+          "Grandes taches irrégulières gris-vert sur les feuilles",
+          "Sporulation blanche sous les feuilles",
+          "Brunissement rapide et mort du feuillage",
+          "Pourriture brune sur les fruits"
+        ]
+      },
+      "cure": {
+        "en": "Immediate action is critical. Apply fungicides containing metalaxyl, chlorothalonil, or mancozeb. Spray every 5-7 days during active disease. Remove and destroy (burn or bury) all infected plant parts. Do not compost. In severe cases, remove entire plants. Separate tomatoes from potatoes to prevent cross-infection.",
+        "ar": "التصرف الفوري ضروري. استخدم مبيدات فطرية. رش كل 5-7 أيام. أزل ودمر جميع الأجزاء المصابة. افصل الطماطم عن البطاطس.",
+        "fr": "Une action immédiate est essentielle. Appliquez des fongicides. Pulvérisez tous les 5-7 jours. Retirez et détruisez toutes les parties infectées."
+      },
+      "prevention": {
+        "en": "Use disease-free transplants. Monitor local late blight forecasting systems. Plant in well-drained areas with good air circulation. Space plants adequately. Avoid overhead irrigation. Apply preventive fungicides before wet weather. Remove all volunteer tomatoes and potatoes. Practice crop rotation. Don't save seed from infected plants.",
+        "ar": "استخدم شتلات خالية من الأمراض. ازرع في مناطق جيدة الصرف مع تهوية جيدة. تجنب الري العلوي. مارس تناوب المحاصيل.",
+        "fr": "Utilisez des plants sains. Plantez dans des zones bien drainées. Évitez l'irrigation par aspersion. Pratiquez la rotation des cultures."
+      }
+    },
+    {
+      "canonical_name": "leaf_mold_tomato",
+      "model_class": "Tomato_Leaf_Mold",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Leaf Mold", "Tomato Leaf Mold", "Cladosporium Leaf Mold"],
+        "ar": ["عفن الأوراق", "عفن أوراق الطماطم"],
+        "fr": ["Cladosporiose", "Moisissure des feuilles de tomate"]
+      },
+      "description": {
+        "en": "Leaf mold is caused by the fungus Passalora fulva (formerly Cladosporium fulvum). It's particularly problematic in greenhouse tomatoes and areas with high humidity. The disease primarily affects foliage but can significantly reduce yield by decreasing photosynthetic capacity.",
+        "ar": "عفن الأوراق يسببه فطر باسالورا فولفا. يمثل مشكلة خاصة في طماطم البيوت الزجاجية والمناطق ذات الرطوبة العالية.",
+        "fr": "La cladosporiose est causée par le champignon Passalora fulva. Elle est particulièrement problématique dans les serres et les zones à forte humidité."
+      },
+      "symptoms": {
+        "en": [
+          "Pale green to yellowish spots on upper leaf surfaces",
+          "Olive-green to brown velvety mold on lower leaf surfaces",
+          "Spots may merge and cover entire leaf",
+          "Affected leaves curl, wither, and drop",
+          "Disease typically starts on lower leaves and moves upward",
+          "Rarely affects fruit directly but reduces yield",
+          "Blossoms may drop in severe infections"
+        ],
+        "ar": [
+          "بقع خضراء شاحبة إلى صفراء على أسطح الأوراق العلوية",
+          "عفن مخملي أخضر زيتوني إلى بني على أسطح الأوراق السفلية",
+          "قد تندمج البقع وتغطي الورقة بأكملها",
+          "تتجعد الأوراق المصابة وتذبل وتسقط"
+        ],
+        "fr": [
+          "Taches vert pâle à jaunâtres sur les surfaces supérieures des feuilles",
+          "Moisissure veloutée vert olive à brune sous les feuilles",
+          "Les taches peuvent fusionner",
+          "Les feuilles affectées se recroquevillent et tombent"
+        ]
+      },
+      "cure": {
+        "en": "Improve air circulation immediately by pruning and spacing. Reduce humidity in greenhouses through ventilation. Apply fungicides containing chlorothalonil, mancozeb, or copper. Remove and destroy severely infected leaves. In greenhouses, maintain relative humidity below 85% and ensure adequate ventilation.",
+        "ar": "حسن دوران الهواء فوراً عن طريق التقليم والتباعد. قلل الرطوبة في البيوت الزجاجية. استخدم مبيدات فطرية. أزل الأوراق المصابة بشدة.",
+        "fr": "Améliorez la circulation de l'air par la taille. Réduisez l'humidité dans les serres. Appliquez des fongicides. Retirez les feuilles gravement infectées."
+      },
+      "prevention": {
+        "en": "Choose resistant varieties (many modern varieties have Cf resistance genes). Ensure good air circulation through proper spacing and pruning. Avoid overhead watering. In greenhouses, maintain good ventilation and keep humidity below 85%. Use fans to improve air movement. Remove and destroy plant debris. Rotate crops.",
+        "ar": "اختر أصنافاً مقاومة. ضمن تهوية جيدة من خلال التباعد والتقليم المناسب. تجنب الري العلوي. في البيوت الزجاجية، حافظ على تهوية جيدة.",
+        "fr": "Choisissez des variétés résistantes. Assurez une bonne circulation d'air. Évitez l'arrosage par aspersion. Maintenez une bonne ventilation dans les serres."
+      }
+    },
+    {
+      "canonical_name": "septoria_leaf_spot_tomato",
+      "model_class": "Tomato_Septoria_leaf_spot",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Septoria Leaf Spot", "Septoria Blight"],
+        "ar": ["تبقع الأوراق السبتوري", "لفحة السبتوريا"],
+        "fr": ["Septoriose", "Taches septoriennes"]
+      },
+      "description": {
+        "en": "Septoria leaf spot is caused by the fungus Septoria lycopersici. It's one of the most destructive foliage diseases of tomatoes, particularly in areas with frequent rainfall. The fungus can overwinter on tomato debris and solanaceous weeds, spreading through rain splash and wind.",
+        "ar": "تبقع الأوراق السبتوري يسببه فطر سبتوريا ليكوبيرسيسي. يعد من أكثر أمراض أوراق الطماطم تدميراً، خاصة في المناطق ذات الأمطار المتكررة.",
+        "fr": "La septoriose est causée par le champignon Septoria lycopersici. C'est l'une des maladies foliaires les plus destructrices de la tomate."
+      },
+      "symptoms": {
+        "en": [
+          "Numerous small, circular spots (1/16 to 1/4 inch) on lower leaves",
+          "Spots have dark brown margins with grayish-white centers",
+          "Tiny black fruiting bodies (pycnidia) visible in spot centers",
+          "Spots may merge, causing extensive leaf blighting",
+          "Severe defoliation starting from bottom of plant",
+          "Fruit rarely directly affected but yield reduced due to defoliation",
+          "Stems may show elongated dark lesions"
+        ],
+        "ar": [
+          "بقع صغيرة دائرية عديدة على الأوراق السفلية",
+          "للبقع حواف بنية داكنة مع مراكز رمادية بيضاء",
+          "أجسام ثمرية سوداء صغيرة مرئية في مراكز البقع",
+          "تساقط شديد للأوراق من أسفل النبات"
+        ],
+        "fr": [
+          "Nombreuses petites taches circulaires sur les feuilles inférieures",
+          "Taches avec marges brun foncé et centres gris-blanc",
+          "Petits corps fructifères noirs visibles",
+          "Défoliation sévère en partant du bas de la plante"
+        ]
+      },
+      "cure": {
+        "en": "Apply fungicides containing chlorothalonil, mancozeb, or copper at first sign of disease. Spray every 7-10 days, especially during wet weather. Remove and destroy infected lower leaves promptly. Mulch around plants to prevent rain splash. Improve air circulation through pruning.",
+        "ar": "استخدم مبيدات فطرية تحتوي على كلوروثالونيل أو مانكوزيب. رش كل 7-10 أيام. أزل الأوراق السفلية المصابة. استخدم النشارة حول النباتات.",
+        "fr": "Appliquez des fongicides contenant du chlorothalonil ou du mancozèbe. Pulvérisez tous les 7-10 jours. Retirez les feuilles inférieures infectées."
+      },
+      "prevention": {
+        "en": "Practice 2-3 year crop rotation. Remove all tomato debris at end of season. Eliminate solanaceous weeds. Use disease-free transplants. Mulch to prevent soil splash. Space plants for good air circulation. Stake or cage plants. Use drip irrigation. Apply preventive fungicides.",
+        "ar": "مارس تناوب المحاصيل لمدة 2-3 سنوات. أزل جميع بقايا الطماطم. تخلص من الأعشاب الباذنجانية. استخدم النشارة.",
+        "fr": "Pratiquez la rotation des cultures pendant 2-3 ans. Retirez tous les débris de tomates. Éliminez les mauvaises herbes solanacées. Utilisez le paillage."
+      }
+    },
+    {
+      "canonical_name": "spider_mites_tomato",
+      "model_class": "Tomato_Spider_mites_Two_spotted_spider_mite",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Spider Mites", "Two-Spotted Spider Mite", "Red Spider Mite"],
+        "ar": ["العنكبوت الأحمر", "الحلم العنكبوتي ذو البقعتين"],
+        "fr": ["Tétranyque", "Araignée rouge", "Acarien à deux points"]
+      },
+      "description": {
+        "en": "Two-spotted spider mites (Tetranychus urticae) are tiny arachnids that feed on plant cells. They thrive in hot, dry conditions and reproduce rapidly, with populations doubling every few days. Heavy infestations can severely damage or kill plants.",
+        "ar": "العنكبوت الأحمر ذو البقعتين حشرات عنكبوتية صغيرة تتغذى على خلايا النبات. تزدهر في الظروف الحارة والجافة وتتكاثر بسرعة.",
+        "fr": "Les tétranyques à deux points sont de minuscules arachnides qui se nourrissent des cellules végétales. Ils prospèrent dans des conditions chaudes et sèches."
+      },
+      "symptoms": {
+        "en": [
+          "Tiny yellow or white stippling (dots) on upper leaf surfaces",
+          "Fine webbing on undersides of leaves and between stems",
+          "Leaves may turn bronze, yellow, or brown",
+          "Leaf drop in severe infestations",
+          "Tiny moving dots (mites) visible with magnification",
+          "Plants appear dusty or dirty",
+          "Stunted growth and reduced yield"
+        ],
+        "ar": [
+          "نقاط صفراء أو بيضاء صغيرة على أسطح الأوراق العلوية",
+          "شبكات دقيقة على الجوانب السفلية للأوراق",
+          "قد تتحول الأوراق إلى اللون البرونزي أو الأصفر أو البني",
+          "تساقط الأوراق في الإصابات الشديدة"
+        ],
+        "fr": [
+          "Petits points jaunes ou blancs sur les surfaces supérieures des feuilles",
+          "Toiles fines sous les feuilles",
+          "Les feuilles peuvent devenir bronze, jaunes ou brunes",
+          "Chute des feuilles lors d'infestations sévères"
+        ]
+      },
+      "cure": {
+        "en": "Spray plants with strong jet of water to dislodge mites. Apply insecticidal soap or neem oil, thoroughly coating undersides of leaves. For severe infestations, use miticides containing abamectin or spiromesifen. Apply 2-3 times at 5-7 day intervals. Avoid broad-spectrum insecticides that kill beneficial predators. Release predatory mites (Phytoseiulus persimilis) for biological control.",
+        "ar": "رش النباتات بنفاثة ماء قوية لإزالة الحلم. استخدم الصابون الحشري أو زيت النيم. للإصابات الشديدة، استخدم مبيدات الحلم.",
+        "fr": "Pulvérisez les plantes avec un jet d'eau fort. Appliquez du savon insecticide ou de l'huile de neem. Pour les infestations sévères, utilisez des acaricides."
+      },
+      "prevention": {
+        "en": "Monitor plants regularly, especially during hot, dry weather. Keep plants well-watered to reduce stress. Avoid excessive nitrogen fertilization. Maintain dust-free environment. Encourage natural predators (ladybugs, lacewings). Quarantine new plants before introducing to garden. Remove heavily infested plants. Apply preventive neem oil sprays during high-risk periods.",
+        "ar": "راقب النباتات بانتظام، خاصة خلال الطقس الحار والجاف. حافظ على ري النباتات جيداً. شجع المفترسات الطبيعية.",
+        "fr": "Surveillez les plantes régulièrement. Gardez les plantes bien arrosées. Encouragez les prédateurs naturels. Retirez les plantes fortement infestées."
+      }
+    },
+    {
+      "canonical_name": "target_spot_tomato",
+      "model_class": "Tomato__Target_Spot",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Target Spot", "Corynespora Leaf Spot"],
+        "ar": ["البقعة المستهدفة", "تبقع كورينيسبورا"],
+        "fr": ["Tache cible", "Corynesporose"]
+      },
+      "description": {
+        "en": "Target spot is caused by the fungus Corynespora cassiicola. It can affect leaves, stems, and fruit of tomatoes. The disease thrives in warm, humid conditions and can cause significant defoliation and fruit damage, particularly in tropical and subtropical regions.",
+        "ar": "البقعة المستهدفة يسببها فطر كورينيسبورا كاسيكولا. يمكن أن يصيب أوراق وسيقان وثمار الطماطم. يزدهر المرض في الظروف الدافئة والرطبة.",
+        "fr": "La tache cible est causée par le champignon Corynespora cassiicola. Elle peut affecter les feuilles, les tiges et les fruits des tomates."
+      },
+      "symptoms": {
+        "en": [
+          "Circular to irregular brown spots on leaves",
+          "Spots may have concentric rings (target-like appearance)",
+          "Spots often have a darker border with lighter center",
+          "Large spots may crack and fall out creating shot-holes",
+          "Severe infections cause significant defoliation",
+          "Brown, sunken spots on fruit",
+          "Stem lesions in severe cases"
+        ],
+        "ar": [
+          "بقع بنية دائرية إلى غير منتظمة على الأوراق",
+          "قد تحتوي البقع على حلقات متحدة المركز",
+          "غالباً ما يكون للبقع حدود داكنة مع مركز أفتح",
+          "قد تتشقق البقع الكبيرة وتسقط مكونة ثقوباً"
+        ],
+        "fr": [
+          "Taches brunes circulaires à irrégulières sur les feuilles",
+          "Les taches peuvent avoir des anneaux concentriques",
+          "Les taches ont souvent une bordure plus sombre",
+          "Les grandes taches peuvent se fissurer"
+        ]
+      },
+      "cure": {
+        "en": "Apply fungicides containing chlorothalonil, mancozeb, azoxystrobin, or copper at first sign of disease. Spray every 7-14 days depending on disease pressure. Remove and destroy infected leaves. Improve air circulation. Reduce humidity in greenhouses. Avoid overhead irrigation.",
+        "ar": "استخدم مبيدات فطرية تحتوي على كلوروثالونيل أو مانكوزيب. رش كل 7-14 يوم. أزل الأوراق المصابة. حسن دوران الهواء.",
+        "fr": "Appliquez des fongicides contenant du chlorothalonil ou du mancozèbe. Pulvérisez tous les 7-14 jours. Retirez les feuilles infectées."
+      },
+      "prevention": {
+        "en": "Use disease-free seed and transplants. Practice crop rotation. Remove plant debris at end of season. Space plants adequately for air circulation. Use drip irrigation. Mulch to prevent rain splash. Apply preventive fungicides during favorable disease conditions. Avoid excessive nitrogen fertilization.",
+        "ar": "استخدم بذور وشتلات خالية من الأمراض. مارس تناوب المحاصيل. أزل بقايا النباتات. باعد بين النباتات.",
+        "fr": "Utilisez des semences et plants sains. Pratiquez la rotation des cultures. Retirez les débris végétaux. Espacez les plants."
+      }
+    },
+    {
+      "canonical_name": "yellow_leaf_curl_virus_tomato",
+      "model_class": "Tomato__Tomato_YellowLeaf__Curl_Virus",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Yellow Leaf Curl Virus", "TYLCV", "Tomato Yellow Leaf Curl"],
+        "ar": ["فيروس تجعد واصفرار أوراق الطماطم", "فيروس الاصفرار والتجعد"],
+        "fr": ["Virus de l'enroulement chlorotique", "TYLCV", "Maladie des feuilles jaunes enroulées"]
+      },
+      "description": {
+        "en": "Tomato Yellow Leaf Curl Virus (TYLCV) is a devastating viral disease transmitted by whiteflies (Bemisia tabaci). Once infected, plants cannot be cured. The virus is particularly problematic in tropical and subtropical regions where whitefly populations are high year-round.",
+        "ar": "فيروس تجعد واصفرار أوراق الطماطم مرض فيروسي مدمر ينتقل عن طريق الذباب الأبيض. بمجرد الإصابة، لا يمكن علاج النباتات.",
+        "fr": "Le virus de l'enroulement chlorotique de la tomate est une maladie virale dévastatrice transmise par les aleurodes. Une fois infectées, les plantes ne peuvent pas être guéries."
+      },
+      "symptoms": {
+        "en": [
+          "Upward curling and cupping of leaves",
+          "Yellowing of leaf margins and between veins",
+          "Severe stunting of plants",
+          "Leaves become thick and leathery",
+          "Flowers may drop without setting fruit",
+          "Fruit production severely reduced or absent",
+          "Plants infected early may die",
+          "Young plants more severely affected"
+        ],
+        "ar": [
+          "تجعد الأوراق للأعلى",
+          "اصفرار حواف الأوراق وبين العروق",
+          "تقزم شديد للنباتات",
+          "تصبح الأوراق سميكة وجلدية",
+          "قد تسقط الأزهار دون عقد ثمار"
+        ],
+        "fr": [
+          "Enroulement vers le haut des feuilles",
+          "Jaunissement des marges des feuilles",
+          "Nanisme sévère des plantes",
+          "Les feuilles deviennent épaisses et coriaces",
+          "Les fleurs peuvent tomber sans fructifier"
+        ]
+      },
+      "cure": {
+        "en": "There is no cure for viral infections. Remove and destroy infected plants immediately to prevent spread to healthy plants. Do not compost infected material - burn or bag and dispose. Control whitefly vectors aggressively on remaining plants. Consider removing all plants and starting fresh if infection is widespread.",
+        "ar": "لا يوجد علاج للإصابات الفيروسية. أزل ودمر النباتات المصابة فوراً لمنع الانتشار. لا تستخدمها كسماد. كافح الذباب الأبيض بقوة.",
+        "fr": "Il n'existe pas de remède contre les infections virales. Retirez et détruisez immédiatement les plantes infectées. Contrôlez les vecteurs aleurodes."
+      },
+      "prevention": {
+        "en": "Use TYLCV-resistant tomato varieties. Control whitefly populations with insecticidal soaps, neem oil, or appropriate insecticides. Use reflective mulches to repel whiteflies. Install fine mesh screens in greenhouses. Remove and destroy infected plants immediately. Avoid planting tomatoes near other infected solanaceous crops. Use yellow sticky traps to monitor whitefly populations.",
+        "ar": "استخدم أصناف طماطم مقاومة للفيروس. كافح الذباب الأبيض بالصابون الحشري أو زيت النيم. استخدم نشارة عاكسة. أزل النباتات المصابة فوراً.",
+        "fr": "Utilisez des variétés de tomates résistantes au TYLCV. Contrôlez les populations d'aleurodes. Utilisez des paillis réfléchissants. Retirez immédiatement les plantes infectées."
+      }
+    },
+    {
+      "canonical_name": "mosaic_virus_tomato",
+      "model_class": "Tomato__Tomato_mosaic_virus",
+      "plant_canonical": "tomato",
+      "names": {
+        "en": ["Tomato Mosaic Virus", "ToMV", "Tobacco Mosaic Virus Complex"],
+        "ar": ["فيروس موزاييك الطماطم", "فيروس الفسيفساء"],
+        "fr": ["Virus de la mosaïque de la tomate", "ToMV", "Virus de la mosaïque du tabac"]
+      },
+      "description": {
+        "en": "Tomato Mosaic Virus (ToMV) is highly contagious and extremely stable, remaining infectious on tools, hands, and plant debris for years. It's primarily spread through mechanical transmission during handling and pruning. The virus doesn't require an insect vector to spread.",
+        "ar": "فيروس موزاييك الطماطم شديد العدوى ومستقر للغاية، يبقى معدياً على الأدوات والأيدي وبقايا النباتات لسنوات. ينتشر بشكل رئيسي من خلال الانتقال الميكانيكي.",
+        "fr": "Le virus de la mosaïque de la tomate est très contagieux et extrêmement stable. Il se propage principalement par transmission mécanique lors de la manipulation."
+      },
+      "symptoms": {
+        "en": [
+          "Light and dark green mottled (mosaic) pattern on leaves",
+          "Leaves may be distorted, curled, or reduced in size",
+          "Fern-like appearance of leaves (fernleaf)",
+          "Stunted plant growth",
+          "Reduced fruit set and quality",
+          "Fruit may show yellow blotches or brown patches (internal browning)",
+          "Young leaves may be more severely affected"
+        ],
+        "ar": [
+          "نمط مرقط (فسيفسائي) أخضر فاتح وداكن على الأوراق",
+          "قد تكون الأوراق مشوهة أو ملتفة",
+          "تقزم نمو النبات",
+          "انخفاض عقد الثمار وجودتها"
+        ],
+        "fr": [
+          "Motif marbré vert clair et foncé sur les feuilles",
+          "Les feuilles peuvent être déformées ou enroulées",
+          "Croissance rabougrie des plantes",
+          "Réduction de la nouaison et de la qualité des fruits"
+        ]
+      },
+      "cure": {
+        "en": "There is no cure for viral infections. Remove and destroy infected plants immediately. Disinfect all tools that contacted infected plants with 10% bleach solution or milk (which inactivates the virus). Wash hands thoroughly with soap before handling healthy plants. Do not compost infected plant material.",
+        "ar": "لا يوجد علاج للإصابات الفيروسية. أزل ودمر النباتات المصابة فوراً. عقم جميع الأدوات بمحلول مبيض 10%. اغسل يديك جيداً بالصابون.",
+        "fr": "Il n'existe pas de remède contre les infections virales. Retirez et détruisez les plantes infectées. Désinfectez tous les outils avec une solution d'eau de Javel à 10%."
+      },
+      "prevention": {
+        "en": "Use certified virus-free seed and transplants. Choose resistant varieties (look for 'ToMV' resistance). Wash hands with soap and water before handling plants. Disinfect tools regularly with 10% bleach or milk. Avoid tobacco use around tomato plants (can carry related viruses). Don't touch healthy plants after handling infected ones. Remove plant debris promptly.",
+        "ar": "استخدم بذور وشتلات خالية من الفيروسات. اختر أصنافاً مقاومة. اغسل يديك بالصابون والماء. عقم الأدوات بانتظام. تجنب التدخين حول نباتات الطماطم.",
+        "fr": "Utilisez des semences certifiées sans virus. Choisissez des variétés résistantes. Lavez-vous les mains au savon. Désinfectez régulièrement les outils. Évitez le tabac autour des plants de tomates."
+      }
+    }
+  ],
+  "healthy_classes": [
+    {
+      "model_class": "Pepper__bell___healthy",
+      "plant_canonical": "pepper_bell"
+    },
+    {
+      "model_class": "Potato___healthy",
+      "plant_canonical": "potato"
+    },
+    {
+      "model_class": "Tomato_healthy",
+      "plant_canonical": "tomato"
+    }
+  ]
+}

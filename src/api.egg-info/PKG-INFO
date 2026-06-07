@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: api
+Version: 0.1.0
+Summary: Plant Disease Detection API - Flask REST API with MongoDB
+Requires-Python: >=3.12
+Requires-Dist: flask>=3.1.0
+Requires-Dist: flask-cors>=5.0.0
+Requires-Dist: pymongo>=4.10.1
+Requires-Dist: pydantic>=2.10.6
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: numpy>=2.3.5
+Requires-Dist: opencv-python>=4.11.0.86
+Requires-Dist: pillow>=12.0.0
+Requires-Dist: tensorflow>=2.20.0
+Requires-Dist: gunicorn>=23.0.0
+Requires-Dist: flasgger>=0.9.7.1

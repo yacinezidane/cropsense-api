@@ -1,0 +1,800 @@
+basePath: /
+consumes:
+- application/json
+- multipart/form-data
+definitions: {}
+host: 127.0.0.1:5000
+info:
+  contact:
+    name: Plant Disease Detection Team
+    url: https://github.com/yourusername/PlantDisease
+  description: REST API for plant disease detection with MongoDB storage. Supports
+    multi-language plant/disease information and user-contributed names.
+  title: Plant Disease Detection API
+  version: 0.1.0
+paths:
+  /api/diseases:
+    get:
+      responses:
+        '200':
+          description: List of all diseases
+          schema:
+            items:
+              properties:
+                _id:
+                  type: string
+                canonical_name:
+                  type: string
+                cure:
+                  type: object
+                description:
+                  type: object
+                model_class:
+                  description: Model output class name
+                  type: string
+                names:
+                  type: object
+                plant_id:
+                  type: string
+                prevention:
+                  type: object
+                symptoms:
+                  type: object
+                user_contributed_names:
+                  type: array
+              type: object
+            type: array
+      summary: Get all diseases
+      tags:
+      - Diseases
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            canonical_name:
+              example: Early Blight
+              type: string
+            cure:
+              description: Multi-language cure instructions
+              example:
+                en: Apply copper fungicide
+              type: object
+            description:
+              description: Multi-language descriptions
+              example:
+                en: Fungal disease affecting tomatoes
+              type: object
+            model_class:
+              description: Must match model output class
+              example: Tomato_Early_blight
+              type: string
+            names:
+              description: Multi-language names
+              example:
+                ar:
+                - Early_Blight_in_Arabic
+                en:
+                - Early Blight
+              type: object
+            plant_id:
+              description: MongoDB ObjectId of the plant
+              example: 507f1f77bcf86cd799439011
+              type: string
+            prevention:
+              description: Multi-language prevention tips
+              example:
+                en: Rotate crops annually
+              type: object
+            symptoms:
+              description: Multi-language symptoms list
+              example:
+                en:
+                - Dark spots on leaves
+                - Yellowing
+              type: object
+          required:
+          - canonical_name
+          - model_class
+          - plant_id
+          type: object
+      responses:
+        '201':
+          description: Disease created successfully
+          schema:
+            properties:
+              id:
+                type: string
+            type: object
+        '400':
+          description: Invalid request data
+      summary: Create new disease
+      tags:
+      - Diseases
+  /api/diseases/by-class/{class_name}:
+    get:
+      parameters:
+      - description: Model output class name (e.g., "Tomato_Early_blight")
+        in: path
+        name: class_name
+        required: true
+        type: string
+      - default: en
+        description: Language code (en, ar, fr, etc.)
+        in: query
+        name: language
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Disease details for the given model class
+          schema:
+            properties:
+              _id:
+                type: string
+              canonical_name:
+                type: string
+              cure:
+                type: object
+              description:
+                type: object
+              model_class:
+                type: string
+              names:
+                type: object
+              plant_id:
+                type: string
+              prevention:
+                type: object
+              symptoms:
+                type: object
+              user_contributed_names:
+                items:
+                  properties:
+                    added_by:
+                      type: string
+                    created_at:
+                      format: date-time
+                      type: string
+                    language:
+                      type: string
+                    name:
+                      type: string
+                    votes:
+                      type: integer
+                  type: object
+                type: array
+            type: object
+        '400':
+          description: Invalid request
+        '404':
+          description: Disease not found for the given class name
+      summary: Get disease by model class name
+      tags:
+      - Diseases
+  /api/diseases/{disease_id}:
+    delete:
+      parameters:
+      - description: Disease ID
+        in: path
+        name: disease_id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Disease deleted successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid disease ID
+        '404':
+          description: Disease not found
+      summary: Delete disease
+      tags:
+      - Diseases
+    get:
+      parameters:
+      - description: Disease ID
+        in: path
+        name: disease_id
+        required: true
+        type: string
+      - default: en
+        description: Language code (en, ar, fr, etc.)
+        in: query
+        name: language
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Disease details
+          schema:
+            properties:
+              _id:
+                type: string
+              canonical_name:
+                type: string
+              cure:
+                description: Multi-language cure instructions
+                type: object
+              description:
+                description: Multi-language descriptions
+                type: object
+              model_class:
+                description: Model output class name (e.g., "Tomato_Early_blight")
+                type: string
+              names:
+                description: Multi-language names
+                type: object
+              plant_id:
+                type: string
+              prevention:
+                description: Multi-language prevention tips
+                type: object
+              symptoms:
+                description: Multi-language symptoms list
+                type: object
+              user_contributed_names:
+                items:
+                  properties:
+                    added_by:
+                      type: string
+                    created_at:
+                      format: date-time
+                      type: string
+                    language:
+                      type: string
+                    name:
+                      type: string
+                    votes:
+                      type: integer
+                  type: object
+                type: array
+            type: object
+        '400':
+          description: Invalid disease ID
+        '404':
+          description: Disease not found
+      summary: Get disease by ID with optional language
+      tags:
+      - Diseases
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Disease ID
+        in: path
+        name: disease_id
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            canonical_name:
+              type: string
+            cure:
+              type: object
+            description:
+              type: object
+            model_class:
+              type: string
+            names:
+              type: object
+            plant_id:
+              type: string
+            prevention:
+              type: object
+            symptoms:
+              type: object
+          type: object
+      responses:
+        '200':
+          description: Disease updated successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid request data
+        '404':
+          description: Disease not found
+      summary: Update disease
+      tags:
+      - Diseases
+  /api/diseases/{disease_id}/names:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Disease ID
+        in: path
+        name: disease_id
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            added_by:
+              description: User ID who added the name
+              example: user_123
+              type: string
+            language:
+              description: Language code (en, ar, fr, etc.)
+              example: en
+              type: string
+            name:
+              description: User-contributed name for the disease
+              example: Leaf Blight
+              type: string
+          required:
+          - name
+          type: object
+      responses:
+        '200':
+          description: Name added successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid request data
+        '404':
+          description: Disease not found
+      summary: Add user-contributed disease name
+      tags:
+      - Diseases
+  /api/diseases/{disease_id}/names/{name_index}/vote:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Disease ID
+        in: path
+        name: disease_id
+        required: true
+        type: string
+      - description: Index of the contributed name in the array
+        in: path
+        name: name_index
+        required: true
+        type: integer
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            vote:
+              description: Vote value (1 for upvote, -1 for downvote)
+              enum:
+              - 1
+              - -1
+              example: 1
+              type: integer
+          required:
+          - vote
+          type: object
+      responses:
+        '200':
+          description: Vote recorded successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid vote value or disease ID
+        '404':
+          description: Disease not found
+      summary: Vote on user-contributed disease name
+      tags:
+      - Diseases
+  /api/plants:
+    get:
+      responses:
+        '200':
+          description: List of all plants
+          schema:
+            items:
+              properties:
+                _id:
+                  type: string
+                canonical_name:
+                  type: string
+                care_instructions:
+                  type: object
+                description:
+                  type: object
+                names:
+                  type: object
+                scientific_name:
+                  type: string
+                user_contributed_names:
+                  type: array
+              type: object
+            type: array
+      summary: Get all plants
+      tags:
+      - Plants
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            canonical_name:
+              example: Tomato
+              type: string
+            care_instructions:
+              description: Multi-language care instructions
+              example:
+                ar: Water_regularly_in_Arabic
+                en: Water regularly
+              type: object
+            description:
+              description: Multi-language descriptions
+              example:
+                en: Common garden vegetable
+              type: object
+            names:
+              description: Multi-language names
+              example:
+                ar:
+                - Tomato_in_Arabic
+                en:
+                - Tomato
+                fr:
+                - Tomate
+              type: object
+            scientific_name:
+              example: Solanum lycopersicum
+              type: string
+          required:
+          - canonical_name
+          type: object
+      responses:
+        '201':
+          description: Plant created successfully
+          schema:
+            properties:
+              id:
+                type: string
+            type: object
+        '400':
+          description: Invalid request data
+      summary: Create new plant
+      tags:
+      - Plants
+  /api/plants/{plant_id}:
+    delete:
+      parameters:
+      - description: Plant ID
+        in: path
+        name: plant_id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Plant deleted successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid plant ID
+        '404':
+          description: Plant not found
+      summary: Delete plant
+      tags:
+      - Plants
+    get:
+      parameters:
+      - description: Plant ID
+        in: path
+        name: plant_id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Plant details
+          schema:
+            properties:
+              _id:
+                type: string
+              canonical_name:
+                type: string
+              care_instructions:
+                description: Multi-language care instructions
+                type: object
+              description:
+                description: Multi-language descriptions
+                type: object
+              names:
+                description: Multi-language names
+                example:
+                  ar:
+                  - Tomato_in_Arabic
+                  en:
+                  - Tomato
+                type: object
+              scientific_name:
+                type: string
+              user_contributed_names:
+                items:
+                  properties:
+                    added_by:
+                      type: string
+                    created_at:
+                      format: date-time
+                      type: string
+                    language:
+                      type: string
+                    name:
+                      type: string
+                    votes:
+                      type: integer
+                  type: object
+                type: array
+            type: object
+        '400':
+          description: Invalid plant ID
+        '404':
+          description: Plant not found
+      summary: Get plant by ID
+      tags:
+      - Plants
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Plant ID
+        in: path
+        name: plant_id
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            canonical_name:
+              type: string
+            care_instructions:
+              type: object
+            description:
+              type: object
+            names:
+              type: object
+            scientific_name:
+              type: string
+          type: object
+      responses:
+        '200':
+          description: Plant updated successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid request data
+        '404':
+          description: Plant not found
+      summary: Update plant
+      tags:
+      - Plants
+  /api/plants/{plant_id}/names:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Plant ID
+        in: path
+        name: plant_id
+        required: true
+        type: string
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            added_by:
+              description: User ID who added the name
+              example: user_123
+              type: string
+            language:
+              description: Language code (en, ar, fr, etc.)
+              example: en
+              type: string
+            name:
+              description: User-contributed name for the plant
+              example: Love Apple
+              type: string
+          required:
+          - name
+          type: object
+      responses:
+        '200':
+          description: Name added successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid request data
+        '404':
+          description: Plant not found
+      summary: Add user-contributed plant name
+      tags:
+      - Plants
+  /api/plants/{plant_id}/names/{name_index}/vote:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Plant ID
+        in: path
+        name: plant_id
+        required: true
+        type: string
+      - description: Index of the contributed name in the array
+        in: path
+        name: name_index
+        required: true
+        type: integer
+      - in: body
+        name: body
+        required: true
+        schema:
+          properties:
+            vote:
+              description: Vote value (1 for upvote, -1 for downvote)
+              enum:
+              - 1
+              - -1
+              example: 1
+              type: integer
+          required:
+          - vote
+          type: object
+      responses:
+        '200':
+          description: Vote recorded successfully
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        '400':
+          description: Invalid vote value or plant ID
+        '404':
+          description: Plant not found
+      summary: Vote on user-contributed plant name
+      tags:
+      - Plants
+  /api/predict:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: Image file of plant leaf (JPG, PNG)
+        in: formData
+        name: file
+        required: true
+        type: file
+      - default: en
+        description: Preferred language for response (en, ar, fr, etc.)
+        in: formData
+        name: language
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Successful prediction
+          schema:
+            properties:
+              care_instructions:
+                example: Water regularly, provide full sun
+                nullable: true
+                type: string
+              confidence:
+                example: 0.95
+                format: float
+                type: number
+              cure:
+                example: Apply fungicide regularly
+                nullable: true
+                type: string
+              description:
+                example: Fungal disease affecting tomato leaves
+                nullable: true
+                type: string
+              disease_id:
+                example: 507f1f77bcf86cd799439012
+                nullable: true
+                type: string
+              disease_name:
+                example: Early Blight
+                nullable: true
+                type: string
+              is_healthy:
+                example: false
+                type: boolean
+              plant_id:
+                example: 507f1f77bcf86cd799439011
+                type: string
+              plant_name:
+                example: Tomato
+                type: string
+              prevention:
+                example: Rotate crops, avoid overhead watering
+                nullable: true
+                type: string
+              symptoms:
+                example:
+                - Dark spots on leaves
+                - Yellowing
+                items:
+                  type: string
+                nullable: true
+                type: array
+            type: object
+        '400':
+          description: Bad request (no file, invalid format)
+          schema:
+            properties:
+              error:
+                example: No file provided
+                type: string
+            type: object
+        '404':
+          description: Model class not found in database
+          schema:
+            properties:
+              class_name:
+                type: string
+              confidence:
+                type: number
+              error:
+                type: string
+            type: object
+        '413':
+          description: File too large (>10MB)
+          schema:
+            properties:
+              error:
+                example: File too large
+                type: string
+            type: object
+        '500':
+          description: Internal server error
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+      summary: Predict plant disease from uploaded image
+      tags:
+      - Prediction
+produces:
+- application/json
+schemes:
+- http
+swagger: '2.0'
