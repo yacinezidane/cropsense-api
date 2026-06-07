@@ -31,7 +31,7 @@ try:
     from huggingface_hub import hf_hub_download
 
     for filename in [MODEL_FILENAME, CLASSES_FILE]:
-        dest = MODELS_DIR / filename
+        dest = MODELS_DIR / Path(filename).name
         if dest.exists():
             print(f"✓ Already exists: {filename}  ({dest.stat().st_size / 1e6:.1f} MB)")
             continue
@@ -43,7 +43,7 @@ try:
             local_dir=str(MODELS_DIR),
             token=HF_TOKEN,
         )
-        size_mb = (MODELS_DIR / filename).stat().st_size / 1e6
+        size_mb = (MODELS_DIR / Path(filename).name).stat().st_size / 1e6
         print(f"✓ Downloaded: {filename}  ({size_mb:.1f} MB)")
 
     print("\n✅ All models ready!")
