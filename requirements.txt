@@ -3,19 +3,18 @@ flask-cors>=5.0.0
 pymongo>=4.10.1
 pydantic>=2.10.6
 python-dotenv>=1.0.0
-numpy>=1.26.0
-# Use headless on server (no GUI/display needed)
-opencv-python-headless>=4.9.0.80
-pillow>=10.2.0
-# Use CPU version — Render has no GPU, and it's much lighter
-tensorflow-cpu>=2.15.0
+
+# Python 3.11 compatible versions
+numpy==1.26.4
+opencv-python-headless==4.9.0.80
+pillow>=10.2.0,<12.0.0
+tensorflow-cpu==2.15.1
+
 gunicorn>=23.0.0
 flasgger>=0.9.7.1
 pyjwt>=2.12.1
 bcrypt>=4.1.2
 flask-sock>=0.7.0
-# Required for WebSocket support with gunicorn
 gevent>=24.2.1
 geventwebsocket>=0.10.1
-# For downloading models from Hugging Face Hub
 huggingface-hub>=0.25.0
