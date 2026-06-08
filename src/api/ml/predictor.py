@@ -1,13 +1,13 @@
 """
-predictor.py — يحمّل الموديل محلياً ويشغّله على Render
-بدون استدعاء أي API خارجي
+predictor.py — TFLite version (Render safe)
+بدون TensorFlow
 """
-import pickle
+
 import numpy as np
-from pathlib import Path
 from PIL import Image
 import io
-import tensorflow as tf
+import tflite_runtime.interpreter as tflite
+import pickle
 
 from api.config import DEFAULT_MODEL_PATH, DEFAULT_CLASSES_PATH, IMG_SIZE
 
@@ -15,27 +15,45 @@ from api.config import DEFAULT_MODEL_PATH, DEFAULT_CLASSES_PATH, IMG_SIZE
 class PlantDiseasePredictor:
 
     def __init__(self):
-        print(f"Loading model from: {DEFAULT_MODEL_PATH}")
-        # ✅ يحمّل الموديل من الملف المحلي (اللي نزّله download_models.py)
-        self.model = tf.keras.models.load_model(str(DEFAULT_MODEL_PATH))
+        print(f"Loading TFLite model: {DEFAULT_MODEL_PATH}")
 
-        print(f"Loading classes from: {DEFAULT_CLASSES_PATH}")
+        # ✔ تحميل TFLite بدل TensorFlow
+        self.interpreter = tflite.Interpreter(
+            model_path=str(DEFAULT_MODEL_PATH)
+        )
+        self.interpreter.allocate_tensors()
+
+        self.input_details = self.interpreter.get_input_details()
+        self.output_details = self.interpreter.get_output_details()
+
+        print(f"Loading classes: {DEFAULT_CLASSES_PATH}")
         with open(DEFAULT_CLASSES_PATH, "rb") as f:
             self.classes = pickle.load(f)
 
         print(f"✅ Model ready — {len(self.classes)} classes")
 
     def predict(self, image_bytes: bytes) -> dict:
-        # معالجة الصورة
+
+        # 🖼️ preprocessing
         img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
         img = img.resize(IMG_SIZE)
+
         arr = np.array(img, dtype=np.float32) / 255.0
-        arr = np.expand_dims(arr, axis=0)  # (1, H, W, 3)
+        arr = np.expand_dims(arr, axis=0)
 
-        # تشغيل الموديل محلياً
-        predictions = self.model.predict(arr, verbose=0)[0]
+        # ✔ inference
+        self.interpreter.set_tensor(
+            self.input_details[0]["index"],
+            arr
+        )
 
-        class_idx  = int(np.argmax(predictions))
+        self.interpreter.invoke()
+
+        predictions = self.interpreter.get_tensor(
+            self.output_details[0]["index"]
+        )[0]
+
+        class_idx = int(np.argmax(predictions))
         confidence = float(np.max(predictions))
         class_name = self.classes[class_idx]
 
@@ -46,7 +64,7 @@ class PlantDiseasePredictor:
         }
 
 
-# Singleton — يُحمَّل مرة واحدة عند أول طلب
+# Singleton
 _predictor = None
 
 def get_predictor() -> PlantDiseasePredictor:
