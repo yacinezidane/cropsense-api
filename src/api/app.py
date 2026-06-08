@@ -59,5 +59,7 @@ def create_app():
     @app.route("/health")
     def health():
         return jsonify({"status": "ok"})
-
+    @app.route("/")
+    def home():
+        return jsonify({"status": "running","message": "CropSense API is live 🚀"})
     return app
