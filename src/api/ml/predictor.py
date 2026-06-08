@@ -12,8 +12,13 @@ class PlantDiseasePredictor:
         BASE_DIR = Path("/opt/render/project/src")
         
 
-        print("MODEL PATH:", MODEL_PATH)
-        print("EXISTS:", MODEL_PATH.exists())
+        print("MODEL PATH:", DEFAULT_MODEL_PATH)
+        print("EXISTS:", DEFAULT_MODEL_PATH.exists())
+        self.interpreter = Interpreter(
+           model_path=str(DEFAULT_MODEL_PATH)
+        )
+        with open(DEFAULT_CLASSES_PATH, "r", encoding="utf-8") as f:
+            self.labels = [line.strip() for line in f if line.strip()]
         print("MODEL SIZE:", MODEL_PATH.stat().st_size)
 
         # ✅ ai-edge-litert متوافق مع NumPy 2.x
