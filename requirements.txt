@@ -4,9 +4,10 @@ requests
 pymongo
 python-dotenv
 gunicorn
-numpy==1.26.4
+numpy>=1.23.5,<2.0.0
 pillow
 opencv-python-headless
 huggingface-hub
-tensorflow==2.15.0
+tensorflow-cpu==2.15.0
 huggingface-hub>=0.25.0
+python_requires = >=3.11
