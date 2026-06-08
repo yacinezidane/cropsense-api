@@ -7,7 +7,5 @@ gunicorn
 numpy<2.0
 pillow
 opencv-python-headless
-huggingface-hub
-huggingface-hub>=0.25.0
 protobuf==3.20.3
 ai-edge-litert>=1.0.0
