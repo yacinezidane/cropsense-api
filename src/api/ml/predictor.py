@@ -13,7 +13,7 @@ class PlantDiseasePredictor:
         print("Loading TFLite model...")
 
         # 📌 تحديد المسار الصحيح بشكل ديناميكي (مهم لـ Render)
-        BASE_DIR = Path(__file__).resolve().parent.parent.parent
+        BASE_DIR = Path("/opt/render/project/src")
 
         MODEL_PATH = BASE_DIR / "models" / "model_unquant.tflite"
         LABELS_PATH = BASE_DIR / "models" / "labels.txt"
