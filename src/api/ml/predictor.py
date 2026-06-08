@@ -9,7 +9,7 @@ from api.config import IMG_SIZE
 class PlantDiseasePredictor:
     def __init__(self):
         print("Loading TFLite model...")
-        BASE_DIR = Path("/opt/render/project/src")
+        BASE_DIR = Path(__file__).resolve().parents[3]
         MODEL_PATH = BASE_DIR / "models" / "model_unquant.tflite"
         LABELS_PATH = BASE_DIR / "models" / "labels.txt"
 
