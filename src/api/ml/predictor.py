@@ -9,7 +9,7 @@ from api.config import IMG_SIZE
 class PlantDiseasePredictor:
     def __init__(self):
         print("Loading TFLite model...")
-        BASE_DIR = Path(__file__).resolve().parents[3]
+        BASE_DIR = Path(__file__).resolve().parents[2]
         MODEL_PATH = BASE_DIR / "models" / "model_unquant.tflite"
         LABELS_PATH = BASE_DIR / "models" / "labels.txt"
 
@@ -24,8 +24,8 @@ class PlantDiseasePredictor:
         self.input_details  = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
-        with open(LABELS_PATH, "r") as f:
-            self.labels = [line.strip() for line in f]
+        with open(LABELS_PATH, "r", encoding="utf-8") as f:
+            self.labels = [line.strip() for line in f if line.strip()]
 
         print(f"Model loaded successfully - {len(self.labels)} classes")
 
