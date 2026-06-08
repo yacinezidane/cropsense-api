@@ -1,50 +1,38 @@
 """
-Downloads ML model files from Hugging Face Hub during Render build.
+download_models.py — يحمّل الموديل من HF Hub محلياً
 """
-
 import os
 import sys
 from pathlib import Path
 from huggingface_hub import hf_hub_download
 
-# ─── Config ───────────────────────────────────────────────
+REPO_ID    = "walid0726/plant-disease-ai"
 MODELS_DIR = Path(os.getenv("MODELS_DIR", "models"))
-HF_REPO_ID = os.getenv("HF_REPO_ID", "")
-HF_TOKEN = os.getenv("HF_TOKEN", None)
-
-MODEL_FILENAME = os.getenv("MODEL_FILENAME", "plant_disease_rtx3080_optimized.keras")
-CLASSES_FILE = os.getenv("CLASSES_FILENAME", "label_classes.pkl")
-
-if not HF_REPO_ID:
-    print("❌ ERROR: HF_REPO_ID not set")
-    sys.exit(1)
-
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
-print(f"📁 Models directory: {MODELS_DIR.resolve()}")
 
-# ─── Download function ─────────────────────────────────────
-def download_file(filename):
-    print(f"⬇ Downloading: {filename}")
+# الملفات داخل مجلد models/ في الـ repo
+FILES = [
+    "models/plant_disease_rtx3080_optimized.keras",
+    "models/label_classes.pkl",
+]
 
-    path = hf_hub_download(
-        repo_id=HF_REPO_ID,
-        filename=filename,   # ✔ بدون models/
-        local_dir=str(MODELS_DIR),
-        token=HF_TOKEN
+print(f"Downloading from: {REPO_ID}")
+
+for hf_path in FILES:
+    filename = Path(hf_path).name
+    dest = MODELS_DIR / filename
+
+    if dest.exists():
+        print(f"✓ Already exists: {filename}")
+        continue
+
+    print(f"⬇  Downloading: {filename} ...")
+    # local_dir = parent of MODELS_DIR  →  يحفظ في MODELS_DIR/filename
+    hf_hub_download(
+        repo_id=REPO_ID,
+        filename=hf_path,
+        local_dir=str(MODELS_DIR.parent),
     )
+    print(f"✓ Done: {filename}  ({dest.stat().st_size / 1e6:.1f} MB)")
 
-    print(f"✔ Saved at: {path}")
-    return path
-
-try:
-    model_path = download_file(MODEL_FILENAME)
-    classes_path = download_file(CLASSES_FILE)
-
-    print("\n✅ All models ready!")
-
-    print(f"Model: {model_path}")
-    print(f"Classes: {classes_path}")
-
-except Exception as e:
-    print(f"\n❌ Download failed: {e}")
-    sys.exit(1)
+print("\n✅ Models ready!")
