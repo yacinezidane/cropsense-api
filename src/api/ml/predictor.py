@@ -4,14 +4,13 @@ from PIL import Image
 import io
 from pathlib import Path
 from api.config import IMG_SIZE
-
+from api.config import DEFAULT_MODEL_PATH, DEFAULT_CLASSES_PATH
 
 class PlantDiseasePredictor:
     def __init__(self):
         print("Loading TFLite model...")
         BASE_DIR = Path("/opt/render/project/src")
-        MODEL_PATH = BASE_DIR / "models" / "model_unquant.tflite"
-        LABELS_PATH = BASE_DIR / "models" / "labels.txt"
+        
 
         print("MODEL PATH:", MODEL_PATH)
         print("EXISTS:", MODEL_PATH.exists())
