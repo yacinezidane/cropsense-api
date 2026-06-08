@@ -15,14 +15,14 @@ class PlantDiseasePredictor:
         if not DEFAULT_CLASSES_PATH.exists():
             raise FileNotFoundError(f"Labels not found at {DEFAULT_CLASSES_PATH}")
         
-        # تحميل النموذج مرة واحدة
+        # تحميل النموذج
         self.interpreter = Interpreter(model_path=str(DEFAULT_MODEL_PATH))
         self.interpreter.allocate_tensors()
         
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
         
-        # تحميل التصنيفات مرة واحدة
+        # تحميل التصنيفات من ملف txt
         with open(DEFAULT_CLASSES_PATH, "r", encoding="utf-8") as f:
             self.labels = [line.strip() for line in f if line.strip()]
         
@@ -37,6 +37,11 @@ class PlantDiseasePredictor:
         # تحويل إلى مصفوفة وتطبيع
         input_data = np.array(img, dtype=np.float32) / 255.0
         input_data = np.expand_dims(input_data, axis=0)
+        
+        # التأكد من شكل البيانات (اختياري)
+        expected_shape = self.input_details[0]['shape']
+        if input_data.shape != tuple(expected_shape):
+            print(f"Warning: Input shape {input_data.shape} != expected {expected_shape}")
         
         # تنفيذ التنبؤ
         self.interpreter.set_tensor(self.input_details[0]['index'], input_data)
