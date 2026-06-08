@@ -1,71 +1,56 @@
-"""Cloud-based model inference using Hugging Face API (NO TensorFlow)."""
-
-import os
-import requests
+"""
+predictor.py — يحمّل الموديل محلياً ويشغّله على Render
+بدون استدعاء أي API خارجي
+"""
+import pickle
 import numpy as np
-import cv2
-from typing import Dict
+from pathlib import Path
+from PIL import Image
+import io
+import tensorflow as tf
 
-from api.config import IMG_SIZE
+from api.config import DEFAULT_MODEL_PATH, DEFAULT_CLASSES_PATH, IMG_SIZE
 
 
-class ModelPredictor:
-    """Handles prediction via Hugging Face API."""
+class PlantDiseasePredictor:
 
     def __init__(self):
-        self.api_url = "https://api-inference.huggingface.co/models/walid0726/plant-disease-ai"
-        self.headers = {
-            "Authorization": f"Bearer {os.getenv('HF_TOKEN')}"
-        }
+        print(f"Loading model from: {DEFAULT_MODEL_PATH}")
+        # ✅ يحمّل الموديل من الملف المحلي (اللي نزّله download_models.py)
+        self.model = tf.keras.models.load_model(str(DEFAULT_MODEL_PATH))
 
-    def predict(self, image_bytes: bytes) -> Dict[str, any]:
-        """
-        Send image to Hugging Face and get prediction.
+        print(f"Loading classes from: {DEFAULT_CLASSES_PATH}")
+        with open(DEFAULT_CLASSES_PATH, "rb") as f:
+            self.classes = pickle.load(f)
 
-        Args:
-            image_bytes: image file bytes
+        print(f"✅ Model ready — {len(self.classes)} classes")
 
-        Returns:
-            dict: prediction result
-        """
+    def predict(self, image_bytes: bytes) -> dict:
+        # معالجة الصورة
+        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        img = img.resize(IMG_SIZE)
+        arr = np.array(img, dtype=np.float32) / 255.0
+        arr = np.expand_dims(arr, axis=0)  # (1, H, W, 3)
 
-        response = requests.post(
-            self.api_url,
-            headers=self.headers,
-            data=image_bytes
-        )
+        # تشغيل الموديل محلياً
+        predictions = self.model.predict(arr, verbose=0)[0]
 
-        if response.status_code != 200:
-            raise Exception(f"Hugging Face API error: {response.text}")
-
-        result = response.json()
-
-        # Expected format:
-        # [{"label": "healthy", "score": 0.98}, ...]
-
-        if not isinstance(result, list):
-            raise Exception(f"Invalid response: {result}")
-
-        top_prediction = max(result, key=lambda x: x["score"])
+        class_idx  = int(np.argmax(predictions))
+        confidence = float(np.max(predictions))
+        class_name = self.classes[class_idx]
 
         return {
-            "class_name": top_prediction["label"],
-            "confidence": float(top_prediction["score"]),
-            "all_probabilities": result
+            "class_name": class_name,
+            "confidence": confidence,
+            "class_index": class_idx,
         }
 
 
-# ─────────────────────────────────────────────
-# Singleton instance
-# ─────────────────────────────────────────────
+# Singleton — يُحمَّل مرة واحدة عند أول طلب
 _predictor = None
 
-
-def get_predictor() -> ModelPredictor:
-    """Return global predictor instance."""
+def get_predictor() -> PlantDiseasePredictor:
     global _predictor
-
     if _predictor is None:
-        _predictor = ModelPredictor()
-
+        _predictor = PlantDiseasePredictor()
     return _predictor
