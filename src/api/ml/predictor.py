@@ -2,64 +2,60 @@ import numpy as np
 from ai_edge_litert.interpreter import Interpreter
 from PIL import Image
 import io
-import sys
-import traceback
 from pathlib import Path
-from api.config import IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_CLASSES_PATH
+
 
 class PlantDiseasePredictor:
     def __init__(self):
-        print("🔍 جاري تحميل نموذج TFLite...")
-        try:
-            # التحقق من وجود الملفات
-            if not DEFAULT_MODEL_PATH.exists():
-                raise FileNotFoundError(f"❌ ملف النموذج غير موجود: {DEFAULT_MODEL_PATH}")
-            if not DEFAULT_CLASSES_PATH.exists():
-                raise FileNotFoundError(f"❌ ملف التصنيفات غير موجود: {DEFAULT_CLASSES_PATH}")
+        print("Loading TFLite model...")
 
-            # تحميل النموذج
-            self.interpreter = Interpreter(model_path=str(DEFAULT_MODEL_PATH))
-            self.interpreter.allocate_tensors()
+        # ✅ مسار ديناميكي — يشتغل على Render وعلى جهازك
+        # predictor.py موجود في: src/api/ml/predictor.py
+        # المشروع root:          /opt/render/project/src/
+        # models موجودة في:      /opt/render/project/src/models/
+        BASE_DIR    = Path(__file__).resolve().parent.parent.parent.parent
+        MODELS_DIR  = BASE_DIR / "models"
+        MODEL_PATH  = MODELS_DIR / "model_unquant.tflite"
+        LABELS_PATH = MODELS_DIR / "labels.txt"
 
-            self.input_details = self.interpreter.get_input_details()
-            self.output_details = self.interpreter.get_output_details()
+        print("BASE_DIR:",    BASE_DIR)
+        print("MODEL_PATH:",  MODEL_PATH)
+        print("LABELS_PATH:", LABELS_PATH)
+        print("Model exists:", MODEL_PATH.exists())
+        print("Labels exist:", LABELS_PATH.exists())
 
-            # قراءة التصنيفات
-            with open(DEFAULT_CLASSES_PATH, "r", encoding="utf-8") as f:
-                self.labels = [line.strip() for line in f if line.strip()]
+        self.interpreter = Interpreter(model_path=str(MODEL_PATH))
+        self.interpreter.allocate_tensors()
 
-            expected_shape = self.input_details[0]['shape']
-            print(f"✅ تم تحميل النموذج بنجاح")
-            print(f"📌 حجم المدخلات المتوقع: {expected_shape}")
-            print(f"📌 عدد التصنيفات: {len(self.labels)}")
-        except Exception as e:
-            print("❌ فشل تحميل النموذج:")
-            traceback.print_exc()
-            raise  # إعادة رفع الاستثناء ليمنع تشغيل الخادم
+        self.input_details  = self.interpreter.get_input_details()
+        self.output_details = self.interpreter.get_output_details()
 
-    def predict(self, image_bytes):
-        try:
-            img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-            img = img.resize(IMG_SIZE)
-            input_data = np.array(img, dtype=np.float32) / 255.0
-            input_data = np.expand_dims(input_data, axis=0)
+        with open(LABELS_PATH, "r", encoding="utf-8") as f:
+            self.labels = [line.strip() for line in f if line.strip()]
 
-            self.interpreter.set_tensor(self.input_details[0]['index'], input_data)
-            self.interpreter.invoke()
-            output = self.interpreter.get_tensor(self.output_details[0]['index'])[0]
+        print(f"✅ Model loaded — {len(self.labels)} classes")
 
-            idx = int(np.argmax(output))
-            confidence = float(np.max(output))
-            return {
-                "class_name": self.labels[idx],
-                "confidence": confidence
-            }
-        except Exception as e:
-            print("❌ فشل أثناء التنبؤ:")
-            traceback.print_exc()
-            raise
+    def predict(self, image_bytes: bytes) -> dict:
+        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        img = img.resize((224, 224))  # غيّر الحجم حسب موديلك
 
+        input_data = np.array(img, dtype=np.float32) / 255.0
+        input_data = np.expand_dims(input_data, axis=0)
+
+        self.interpreter.set_tensor(self.input_details[0]['index'], input_data)
+        self.interpreter.invoke()
+        output = self.interpreter.get_tensor(self.output_details[0]['index'])[0]
+
+        idx = int(np.argmax(output))
+        return {
+            "class_name": self.labels[idx],
+            "confidence": float(np.max(output))
+        }
+
+
+# Singleton
 _predictor = None
+
 def get_predictor():
     global _predictor
     if _predictor is None:
