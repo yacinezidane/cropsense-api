@@ -4,7 +4,7 @@ requests
 pymongo
 python-dotenv
 gunicorn
-numpy==1.26.4
+numpy<2.0
 pillow
 opencv-python-headless
 huggingface-hub
