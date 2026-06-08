@@ -2,7 +2,7 @@
 name = "api"
 version = "0.1.0"
 description = "Plant Disease Detection API - Flask REST API with MongoDB"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "flask>=3.1.0",
     "flask-cors>=5.0.0",
