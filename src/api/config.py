@@ -17,7 +17,7 @@ MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "plant_disease_db")
 # ─────────────────────────────
 BASE_DIR = Path("/opt/render/project/src")
 
-MODEL_DIR = BASE_DIR / "models"
+MODEL_DIR = BASE_DIR.parent / "models"
 
 DEFAULT_MODEL_PATH = BASE_DIR / "models" / "model_unquant.tflite"
 DEFAULT_CLASSES_PATH = BASE_DIR / "models" / "labels.txt"
