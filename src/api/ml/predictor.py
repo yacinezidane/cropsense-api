@@ -21,13 +21,13 @@ class PlantDiseasePredictor:
         # 🔍 Debug (اختياري لكن مهم)
         print("MODEL PATH:", MODEL_PATH)
         print("EXISTS:", MODEL_PATH.exists())
-
+        print("MODEL SIZE:", MODEL_PATH.stat().st_size)
         # ❗ تحميل النموذج
         self.interpreter = tflite.Interpreter(
             model_path=str(MODEL_PATH)
         )
         self.interpreter.allocate_tensors()
-       print("MODEL SIZE:", MODEL_PATH.stat().st_size)
+      
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
