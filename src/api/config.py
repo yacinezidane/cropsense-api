@@ -15,9 +15,9 @@ MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "plant_disease_db")
 # ─────────────────────────────
 # 🧠 AI Model (TFLite LOCAL)
 # ─────────────────────────────
-BASE_DIR = Path("/opt/render/project/src")
+BASE_DIR = Path("/opt/render/project")
 
-MODEL_DIR = BASE_DIR.parent / "models"
+MODEL_DIR = BASE_DIR / "models"
 
 DEFAULT_MODEL_PATH = BASE_DIR / "models" / "model_unquant.tflite"
 DEFAULT_CLASSES_PATH = BASE_DIR / "models" / "labels.txt"
