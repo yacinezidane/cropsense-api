@@ -30,29 +30,42 @@ class PlantDiseasePredictor:
         print(f"Model size: {DEFAULT_MODEL_PATH.stat().st_size / (1024*1024):.2f} MB")
 
     def predict(self, image_bytes):
-        # فتح الصورة وتحويلها
-        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-        img = img.resize(IMG_SIZE)
+    try:
+        print("1️⃣ Received image bytes, length:", len(image_bytes))
         
-        # تحويل إلى مصفوفة وتطبيع
+        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        print("2️⃣ Image opened, size:", img.size)
+        
+        img = img.resize(IMG_SIZE)
+        print("3️⃣ Image resized to:", img.size)
+        
         input_data = np.array(img, dtype=np.float32) / 255.0
         input_data = np.expand_dims(input_data, axis=0)
+        print("4️⃣ Input data shape:", input_data.shape)
         
-        # التأكد من شكل البيانات (اختياري)
-        expected_shape = self.input_details[0]['shape']
-        if input_data.shape != tuple(expected_shape):
-            print(f"Warning: Input shape {input_data.shape} != expected {expected_shape}")
-        
-        # تنفيذ التنبؤ
+        print("5️⃣ Setting input tensor...")
         self.interpreter.set_tensor(self.input_details[0]['index'], input_data)
+        
+        print("6️⃣ Invoking interpreter...")
         self.interpreter.invoke()
+        
+        print("7️⃣ Getting output tensor...")
         output = self.interpreter.get_tensor(self.output_details[0]['index'])[0]
+        print("8️⃣ Output shape:", output.shape)
         
         idx = int(np.argmax(output))
+        confidence = float(np.max(output))
+        print(f"9️⃣ Prediction: idx={idx}, confidence={confidence}")
+        
         return {
             "class_name": self.labels[idx],
-            "confidence": float(np.max(output))
+            "confidence": confidence
         }
+    except Exception as e:
+        import traceback
+        print("❌ Prediction failed:")
+        traceback.print_exc()
+        raise  # إعادة رفع الاستثناء ليظهر كـ 500
 
 # Singleton
 _predictor = None
