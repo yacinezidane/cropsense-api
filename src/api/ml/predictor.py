@@ -9,20 +9,10 @@ class PlantDiseasePredictor:
     def __init__(self):
         print("Loading TFLite model...")
 
-        # ✅ مسار ديناميكي — يشتغل على Render وعلى جهازك
-        # predictor.py موجود في: src/api/ml/predictor.py
-        # المشروع root:          /opt/render/project/src/
-        # models موجودة في:      /opt/render/project/src/models/
         BASE_DIR    = Path(__file__).resolve().parent.parent.parent.parent
         MODELS_DIR  = BASE_DIR / "models"
         MODEL_PATH  = MODELS_DIR / "model_unquant.tflite"
         LABELS_PATH = MODELS_DIR / "labels.txt"
-
-        print("BASE_DIR:",    BASE_DIR)
-        print("MODEL_PATH:",  MODEL_PATH)
-        print("LABELS_PATH:", LABELS_PATH)
-        print("Model exists:", MODEL_PATH.exists())
-        print("Labels exist:", LABELS_PATH.exists())
 
         self.interpreter = Interpreter(model_path=str(MODEL_PATH))
         self.interpreter.allocate_tensors()
@@ -30,14 +20,43 @@ class PlantDiseasePredictor:
         self.input_details  = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
-        with open(LABELS_PATH, "r", encoding="utf-8") as f:
-            self.labels = [line.strip() for line in f if line.strip()]
+        # ✅ حجم الصورة من الموديل نفسه (مش hardcoded)
+        input_shape  = self.input_details[0]['shape']  # [1, H, W, 3]
+        self.img_size = (input_shape[1], input_shape[2])
 
-        print(f"✅ Model loaded — {len(self.labels)} classes")
+        # ✅ عدد الـ classes من الموديل نفسه
+        output_shape   = self.output_details[0]['shape']  # [1, N]
+        self.n_classes = output_shape[1]
+
+        # ✅ قراءة labels.txt
+        raw_lines = LABELS_PATH.read_text(encoding="utf-8").splitlines()
+        # بعض الملفات فيها أرقام في البداية مثل "0 Tomato___healthy"
+        self.labels = []
+        for line in raw_lines:
+            line = line.strip()
+            if not line:
+                continue
+            # احذف الرقم لو موجود في البداية
+            parts = line.split(None, 1)
+            if len(parts) == 2 and parts[0].isdigit():
+                self.labels.append(parts[1])
+            else:
+                self.labels.append(line)
+
+        print(f"Model input size:  {self.img_size}")
+        print(f"Model output size: {self.n_classes} classes")
+        print(f"Labels loaded:     {len(self.labels)}")
+        print(f"Labels: {self.labels}")
+
+        # ✅ تحقق من التوافق
+        if len(self.labels) != self.n_classes:
+            print(f"⚠️  WARNING: labels ({len(self.labels)}) != model classes ({self.n_classes})")
+
+        print("✅ Model ready!")
 
     def predict(self, image_bytes: bytes) -> dict:
         img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-        img = img.resize((224, 224))  # غيّر الحجم حسب موديلك
+        img = img.resize(self.img_size)
 
         input_data = np.array(img, dtype=np.float32) / 255.0
         input_data = np.expand_dims(input_data, axis=0)
@@ -46,14 +65,21 @@ class PlantDiseasePredictor:
         self.interpreter.invoke()
         output = self.interpreter.get_tensor(self.output_details[0]['index'])[0]
 
-        idx = int(np.argmax(output))
+        idx        = int(np.argmax(output))
+        confidence = float(np.max(output))
+
+        # ✅ لو الـ index خارج النطاق — اعطِ اسم افتراضي
+        if idx < len(self.labels):
+            class_name = self.labels[idx]
+        else:
+            class_name = f"class_{idx}"
+
         return {
-            "class_name": self.labels[idx],
-            "confidence": float(np.max(output))
+            "class_name": class_name,
+            "confidence": confidence
         }
 
 
-# Singleton
 _predictor = None
 
 def get_predictor():
