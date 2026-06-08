@@ -1,50 +1,42 @@
 """
-download_models.py
-------------------
 Downloads ML model files from Hugging Face Hub during Render build.
-Run this ONCE during build: python download_models.py
 """
 
 import os
 import sys
 from pathlib import Path
+from huggingface_hub import hf_hub_download
 
-# ─── Config ───────────────────────────────────────────────────────────────────
-MODELS_DIR     = Path(os.getenv("MODELS_DIR", "models"))
-HF_REPO_ID     = os.getenv("HF_REPO_ID", "")          # e.g. "YacineBou/cropsense-models"
-HF_TOKEN       = os.getenv("HF_TOKEN", None)           # needed if repo is private
-MODEL_FILENAME = os.getenv("MODEL_FILENAME", "models/plant_disease_rtx3080_optimized.keras")
-CLASSES_FILE   = os.getenv("CLASSES_FILENAME", "models/label_classes.pkl")
+# ─── Config ───────────────────────────────────────────────
+MODELS_DIR = Path(os.getenv("MODELS_DIR", "models"))
+HF_REPO_ID = os.getenv("HF_REPO_ID", "")
+HF_TOKEN = os.getenv("HF_TOKEN", None)
 
-# ─── Validate ─────────────────────────────────────────────────────────────────
+MODEL_FILENAME = os.getenv("MODEL_FILENAME", "plant_disease_rtx3080_optimized.keras")
+CLASSES_FILE = os.getenv("CLASSES_FILENAME", "label_classes.pkl")
+
 if not HF_REPO_ID:
-    print("ERROR: HF_REPO_ID environment variable is not set.")
-    print("Set it to your Hugging Face repo, e.g.: YourUsername/cropsense-models")
+    print("ERROR: HF_REPO_ID not set")
     sys.exit(1)
 
-# ─── Create models directory ──────────────────────────────────────────────────
 MODELS_DIR.mkdir(parents=True, exist_ok=True)
 print(f"Models directory: {MODELS_DIR.resolve()}")
 
-# ─── Download ─────────────────────────────────────────────────────────────────
+# ─── Download ───────────────────────────────────────────────
 try:
-    from huggingface_hub import hf_hub_download
+    files = [MODEL_FILENAME, CLASSES_FILE]
 
-    for filename in [MODEL_FILENAME, CLASSES_FILE]:
-        dest = MODELS_DIR / Path(filename).name
-        if dest.exists():
-            print(f"✓ Already exists: {filename}  ({dest.stat().st_size / 1e6:.1f} MB)")
-            continue
+    for file in files:
+        print(f"⬇ Downloading: {file}")
 
-        print(f"⬇  Downloading: {filename} ...")
         hf_hub_download(
             repo_id=HF_REPO_ID,
-            filename=filename,
+            filename=f"models/{file}",   # 👈 مهم جدًا
             local_dir=str(MODELS_DIR),
             token=HF_TOKEN,
         )
-        size_mb = (MODELS_DIR / Path(filename).name).stat().st_size / 1e6
-        print(f"✓ Downloaded: {filename}  ({size_mb:.1f} MB)")
+
+        print(f"✔ Done: {file}")
 
     print("\n✅ All models ready!")
 
