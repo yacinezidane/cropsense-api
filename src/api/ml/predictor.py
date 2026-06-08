@@ -24,7 +24,7 @@ class PlantDiseasePredictor:
         self.input_details  = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
-        with open(LABELS_PATH, "r", encoding="utf-8") as f:
+        with open(LABELS_PATH, "r") as f:
             self.labels = [line.strip() for line in f]
 
         print(f"Model loaded successfully - {len(self.labels)} classes")
