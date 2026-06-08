@@ -20,7 +20,7 @@ BASE_DIR = Path("/opt/render/project/src")
 MODEL_DIR = BASE_DIR / "models"
 
 DEFAULT_MODEL_PATH = MODEL_DIR / "model_unquant.tflite"
-DEFAULT_CLASSES_PATH = MODEL_DIR / "labels.txt"
+DEFAULT_CLASSES_PATH = MODEL_DIR / "labels.txt" 
 
 # ─────────────────────────────
 # Image Processing
