@@ -18,8 +18,7 @@ services:
     # ── Environment variables ─────────────────────────────────────────────────
     envVars:
       # مجلد الموديلات — ثابت على Render
-      - key: MODELS_DIR
-        value: /opt/render/project/src/models
+      
 
       # MongoDB Atlas connection string — تحط قيمتها في Dashboard
       - key: MONGO_URI
