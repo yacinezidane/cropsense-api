@@ -18,9 +18,8 @@ if os.getenv("MODELS_DIR"):
 else:
     MODELS_DIR = WORKSPACE_ROOT / "models"
 
-DEFAULT_MODEL_PATH   = MODELS_DIR / os.getenv("MODEL_FILENAME",  "plant_disease_rtx3080_optimized.keras")
-DEFAULT_CLASSES_PATH = MODELS_DIR / os.getenv("CLASSES_FILENAME", "label_classes.pkl")
-
+    EFAULT_MODEL_PATH = MODELS_DIR / "model_unquant.tflite"
+    DEFAULT_CLASSES_PATH = MODELS_DIR / "labels.txt"
 # MongoDB Configuration
 MONGO_URI    = os.getenv("MONGO_URI",    "mongodb://localhost:27017/")
 MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "plant_disease_db")
