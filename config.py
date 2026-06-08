@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Workspace root directory (3 levels up from api/src/api/)
-WORKSPACE_ROOT = Path("/opt/render/project/src")
+WORKSPACE_ROOT = Path("/opt/render/project")
 
 # ─── ML Model Configuration ───────────────────────────────────────────────────
 # MODELS_DIR can be overridden via environment variable (required for Render)
