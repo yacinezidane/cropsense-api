@@ -10,4 +10,4 @@ opencv-python-headless
 huggingface-hub
 huggingface-hub>=0.25.0
 protobuf==3.20.3
-tflite-runtime
+tflite-runtime==2.14.0
