@@ -35,11 +35,7 @@ services:
         sync: false   # مطلوب فقط إذا الـ repo خاص (private)
 
       # أسماء ملفات الموديل
-      - key: MODEL_FILENAME
-        value: plant_disease_rtx3080_optimized.keras
-
-      - key: CLASSES_FILENAME
-        value: label_classes.pkl
+      
 
       # JWT
       - key: JWT_SECRET
