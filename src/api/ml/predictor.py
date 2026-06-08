@@ -27,7 +27,7 @@ class PlantDiseasePredictor:
             model_path=str(MODEL_PATH)
         )
         self.interpreter.allocate_tensors()
-
+       print("MODEL SIZE:", MODEL_PATH.stat().st_size)
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
 
